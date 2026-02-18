@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos - Fabiano Santos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-text-primary transition-colors duration-300">
+
+    <canvas id="particle-canvas"></canvas>
+
+    <header class="bg-card shadow-sm sticky top-0 z-40 transition-colors duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-text-heading tracking-tight hover:opacity-80 transition">
+                Fabiano Santos
+            </a>
+            
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="hidden md:flex items-center gap-2 font-medium text-blue-600 hover:text-blue-800 transition">
+                    <i class="fa fa-arrow-left"></i> Voltar ao Início
+                </a>
+
+                <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-background-hover transition">
+                    <svg id="theme-icon-moon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    <svg id="theme-icon-sun" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 relative z-10 min-h-screen">
+        
+        <div class="text-center mb-16 scroll-animate">
+            <h1 class="text-4xl md:text-5xl font-black text-text-heading mb-4">Meus Projetos</h1>
+            <p class="text-xl text-text-secondary max-w-2xl mx-auto">
+                Uma coleção completa das minhas soluções em desenvolvimento mobile, desktop e automação.
+                Aqui você pode ver os detalhes, acessar o código e baixar os executáveis.
+            </p>
+        </div>
+
+        <div id="projects-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+
+    </main>
+
+    <footer class="bg-slate-900 text-white mt-12 relative z-10">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Fabiano da Costa Santos. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="projetos.js"></script>
+</body>
+</html>
