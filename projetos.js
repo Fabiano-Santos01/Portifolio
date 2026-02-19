@@ -6,8 +6,9 @@
 const projetosData = [
     {
         id: 1,
-        titulo: "Calculadora de Médias UNIP",
-        imagem: "https://placehold.co/600x400/3b82f6/ffffff?text=App+UNIP", 
+        titulo: "Calculadora de Médias - UNIVERSIDADE PAULISTA UNIP",
+// MUDANÇA AQUI: %0A cria uma quebra de linha
+imagem: "https://placehold.co/600x400/3b82f6/ffffff?text=CALCULADORA%0AUNIP",
         descricaoCurta: "App Android para cálculo de médias da UNIP.",
         descricaoLonga: "Este aplicativo foi desenvolvido em Kotlin nativo. Ele resolve o problema complexo de calcular a média ponderada da faculdade, considerando notas de provas, trabalhos (PIM) e exames. A interface foi pensada para ser simples e direta.",
         tags: ["Android", "Kotlin", "Mobile"],
