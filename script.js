@@ -233,3 +233,21 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log("Portfólio carregado com sucesso!");
 });
+
+// ==========================================================================
+// 7. LÓGICA DE EXIBIR DESCRIÇÃO (DETALHES DOS PROJETOS)
+// ==========================================================================
+function toggleDescricao(id) {
+    const descDiv = document.getElementById(`desc-${id}`);
+    const btn = document.querySelector(`button[onclick="toggleDescricao(${id})"]`);
+    
+    if (descDiv) {
+        if (descDiv.classList.contains('hidden')) {
+            descDiv.classList.remove('hidden');
+            if(btn) btn.classList.add('open');
+        } else {
+            descDiv.classList.add('hidden');
+            if(btn) btn.classList.remove('open');
+        }
+    }
+}

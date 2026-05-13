@@ -1,17 +1,24 @@
+<!-- Declaração do tipo de documento HTML5 -->
 <!DOCTYPE html>
+<!-- A classe 'light' define o tema claro como padrão ao carregar a página -->
 <html lang="pt-BR" class="light">
 <head>
+    <!-- Configurações básicas de codificação e responsividade (mobile-first) -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fabiano Santos - Portfólio Profissional</title>
     
+    <!-- Importação do Tailwind CSS via CDN para estilização rápida usando classes no HTML -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Importação da fonte tipográfica 'Inter' direto do Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Importação da biblioteca FontAwesome para os ícones (ex: fa-bars, fa-whatsapp, etc.) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <link rel="stylesheet" href="style.css">
+    <!-- Seu arquivo CSS externo com estilos personalizados e variáveis de tema -->
+    <link rel="stylesheet" href="/style.css">
 
     <style>
         html { scroll-behavior: smooth; }
@@ -32,68 +39,87 @@
         }
     </style>
 </head>
+<!-- CORPO DA PÁGINA -->
+<!-- As classes Tailwind configuram: cor de fundo, cor do texto, fonte base e impedem vazamento de rolagem horizontal (overflow-x-hidden) -->
 <body class="bg-background text-text-primary transition-colors duration-300 font-inter overflow-x-hidden">
 
+    <!-- Elemento Canvas vazio. O JavaScript (script.js) usa ele para desenhar as partículas flutuantes do fundo -->
     <canvas id="particle-canvas"></canvas>
 
+    <!-- CABEÇALHO (HEADER): Fica fixo no topo da tela (fixed top-0 w-full) e sobrepõe outros elementos graças ao z-index (z-50) -->
     <header class="fixed w-full top-0 z-50 transition-all duration-300 backdrop-blur-md bg-card/80 shadow-sm">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- LOGO DO SITE: Ao clicar, redireciona para o topo da página (#) -->
             <a href="#" class="text-2xl font-black text-text-heading tracking-tight hover:opacity-80 transition flex items-center gap-2 hover-sound">
                 <span class="text-blue-600">&lt;</span>Fabiano<span class="text-blue-600">/&gt;</span>
             </a>
             
             <div class="flex items-center gap-6">
+                <!-- MENU DESKTOP: Oculto no celular (hidden), visível apenas em telas médias ou maiores (md:flex) -->
                 <ul class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-wide">
-                    <li><a href="#sobre" class="hover:text-blue-600 transition hover-sound">Início</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition hover-sound">Início</a></li>
                     <li><a href="#jornada" class="hover:text-blue-600 transition hover-sound">Minha Jornada</a></li>
                     <li><a href="projetos.html" class="hover:text-blue-600 transition hover-sound">Projetos</a></li>
+                    <li><a href="automacoes.html" class="hover:text-blue-600 transition">Automações</a></li>
                     <li><a href="#competencias" class="hover:text-blue-600 transition hover-sound">Competências</a></li>
                 </ul>
 
+                <!-- BOTÃO DE TEMA (Claro/Escuro): Os ícones SVG de lua e sol são alternados lá no script.js -->
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition focus:outline-none hover-sound">
                     <svg id="theme-icon-moon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                     <svg id="theme-icon-sun" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                 </button>
 
+                <!-- BOTÃO DO MENU MOBILE (Hambúrguer): Só aparece em dispositivos móveis -->
                 <button id="menu-btn" class="md:hidden focus:outline-none hover-sound">
                     <i class="fa fa-bars text-xl"></i>
                 </button>
             </div>
         </nav>
         
+        <!-- CONTEÚDO DO MENU MOBILE: Inicialmente oculto (hidden), aparece ao clicar no botão hambúrguer acima -->
         <div id="menu-container" class="hidden md:hidden bg-card border-t border-gray-100 dark:border-gray-700 absolute w-full left-0 p-4 shadow-lg">
             <ul class="flex flex-col space-y-4 text-center">
-                <li><a href="#sobre" class="nav-link block py-2 hover-sound">Início</a></li>
+                <li><a href="#" class="nav-link block py-2 hover-sound">Início</a></li>
                 <li><a href="#jornada" class="nav-link block py-2 hover-sound">Minha Jornada</a></li>
                 <li><a href="projetos.html" class="nav-link block py-2 hover-sound">Projetos</a></li>
+                <li><a href="automacoes.html" class="nav-link block py-2 hover-sound">Automações</a></li>
                 <li><a href="#competencias" class="nav-link block py-2 hover-sound">Competências</a></li>
             </ul>
         </div>
     </header>
 
+    <!-- CONTEÚDO PRINCIPAL: Abraça todas as seções grandes do portfólio -->
     <main class="relative z-10">
 
+        <!-- SEÇÃO "SOBRE" (HERO): A primeira tela que o usuário vê. -->
+        <!-- O 'min-h-screen' garante que esse bloco ocupe 100% da altura da tela. -->
         <section id="sobre" class="min-h-screen flex items-center justify-center pt-24 px-6 relative overflow-hidden">
+            <!-- Divs redondas e borradas (blur) que dão o efeito de luz/mancha colorida ao fundo (Blobs) -->
             <div class="absolute -top-20 -left-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob pointer-events-none"></div>
             <div class="absolute top-1/2 -right-20 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000 pointer-events-none"></div>
             <div class="absolute -bottom-20 left-1/3 w-96 h-96 bg-green-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000 pointer-events-none"></div>
 
             <div class="container mx-auto flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16 z-10">
+                <!-- Bloco Esquerdo: Textos de apresentação -->
                 <div class="md:w-1/2 text-center md:text-left scroll-animate">
                     <div class="inline-block px-3 py-1 mb-6 text-base font-bold tracking-widest text-blue-600 uppercase bg-blue-100 dark:bg-blue-100 dark:text-blue-400 rounded-full">
                         Desenvolvedor Mobile & Automação
                     </div>
                     
+                    <!-- O nome 'Fabiano' possui o ID 'typed-name' onde o script.js cria o efeito de máquina de escrever -->
                     <h1 class="text-4xl sm:text-5xl md:text-7xl font-black text-text-heading leading-tight mb-6">
                         Olá, sou o <br>
                         <span id="typed-name" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Fabiano</span>
                     </h1>
                     
+                    <!-- Resumo curto. Edite este texto livremente no futuro -->
                     <p class="text-base md:text-xl text-text-secondary leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">
                         Estudante de <strong>Ciência da Computação</strong> transformando ideias em código. 
                         Especialista em automação com Python, aplicativos Android e soluções criativas.
                     </p>
 
+                    <!-- Botão de "Call to Action" apontando para a página de projetos -->
                     <div class="flex justify-center md:justify-start mt-8">
                         <a href="projetos.html" class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-blue-500/50 hover:-translate-y-2 transition duration-300 group hover-sound relative" title="Ver Todos os Projetos">
                             <i class="fa fa-arrow-right text-3xl text-white group-hover:scale-110 transition"></i>
@@ -101,14 +127,17 @@
                     </div>
                 </div>
 
+                <!-- Bloco Direito: Foto do perfil -->
                 <div class="md:w-1/2 flex justify-center md:justify-end scroll-animate delay-200 mt-8 md:mt-0">
                     <div class="relative w-72 h-72 md:w-[30rem] md:h-[30rem]">
+                        <!-- Se for trocar a foto, basta alterar o arquivo 'imagem/foto.jpg' ou mudar este caminho (src) -->
                         <img src="imagem/foto.jpg" alt="Fabiano Santos" class="relative w-full h-full object-cover rounded-3xl shadow-2xl border-4 border-gray-200 dark:border-gray-700 transition duration-500 hover:scale-105">
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- SEÇÃO "JORNADA" (Linha do tempo) -->
         <section id="jornada" class="py-24 px-6 bg-card/50">
             <div class="container mx-auto">
                 <div class="text-center mb-16 scroll-animate">
@@ -116,9 +145,12 @@
                     <p class="text-text-secondary text-lg">Evolução constante: do suporte administrativo ao desenvolvimento.</p>
                 </div>
 
+                <!-- Wrapper da Linha do Tempo. 'border-l-2' é o que cria o risco/traço vertical no Desktop -->
                 <div class="max-w-5xl mx-auto border-l-2 border-gray-200 dark:border-gray-700 pl-8 ml-4 md:ml-auto md:pl-0 md:border-l-0 md:relative">
                     
+                    <!-- ITEM DE JORNADA 1: Para adicionar uma nova experiência, copie e cole este bloco mudando apenas o texto -->
                     <div class="flex flex-col md:flex-row gap-6 mb-16 scroll-animate relative group hover-sound cursor-default">
+                        <!-- O pontinho colorido na linha do tempo -->
                         <div class="hidden md:block absolute left-1/2 -translate-x-1/2 w-5 h-5 bg-blue-600 rounded-full border-4 border-background group-hover:scale-125 transition"></div>
                         <div class="md:w-1/2 md:pr-16 md:text-right">
                             <span class="text-base font-bold text-blue-600 mb-2 block">2026 - Atualmente</span>
@@ -131,6 +163,7 @@
                         </div>
                     </div>
 
+                    <!-- ITEM DE JORNADA 2 -->
                     <div class="flex flex-col md:flex-row gap-6 mb-16 scroll-animate relative group hover-sound cursor-default">
                         <div class="hidden md:block absolute left-1/2 -translate-x-1/2 w-5 h-5 bg-purple-600 rounded-full border-4 border-background group-hover:scale-125 transition"></div>
                         <div class="md:w-1/2 md:pr-16 md:text-right md:order-1">
@@ -144,6 +177,7 @@
                         </div>
                     </div>
 
+                    <!-- ITEM DE JORNADA 3 -->
                     <div class="flex flex-col md:flex-row gap-6 mb-16 scroll-animate relative group hover-sound cursor-default">
                         <div class="hidden md:block absolute left-1/2 -translate-x-1/2 w-5 h-5 bg-green-500 rounded-full border-4 border-background group-hover:scale-125 transition"></div>
                         <div class="md:w-1/2 md:pr-16 md:text-right">
@@ -157,6 +191,7 @@
                         </div>
                     </div>
 
+                    <!-- ITEM DE JORNADA 4 -->
                      <div class="flex flex-col md:flex-row gap-6 scroll-animate relative group hover-sound cursor-default">
                         <div class="hidden md:block absolute left-1/2 -translate-x-1/2 w-5 h-5 bg-gray-400 rounded-full border-4 border-background group-hover:scale-125 transition"></div>
                         <div class="md:w-1/2 md:pr-16 md:text-right md:order-1">
@@ -173,11 +208,14 @@
             </div>
         </section>
 
+        <!-- SEÇÃO "STACK TECNOLÓGICO" (Barra horizontal com ícones gigantes de habilidades) -->
         <section class="py-20 px-6 border-b border-gray-100 dark:border-gray-800 bg-background">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl font-bold text-text-heading mb-12 scroll-animate">Stack Tecnológico</h2>
                 
+                <!-- Contêiner Flex para distribuir os ícones responsivamente -->
                 <div class="flex flex-wrap justify-center gap-10 md:gap-16 opacity-90">
+                    <!-- Exemplo de Ícone (Android). Para mudar, troque a classe "fa-android" e o nome em <p> -->
                     <div class="text-center group scroll-animate hover-sound cursor-pointer hover:-translate-y-2 transition duration-300">
                         <i class="fa fa-android text-4xl md:text-6xl text-green-500 mb-3 group-hover:scale-110 transition"></i>
                         <p class="text-sm font-bold text-text-secondary group-hover:text-green-500">Android</p>
@@ -206,6 +244,7 @@
             </div>
         </section>
 
+        <!-- SEÇÃO "COMPETÊNCIAS DETALHADAS" (Cards/Caixinhas dividindo suas linguagens e ferramentas) -->
         <section id="competencias" class="py-24 px-6 bg-card/30">
             <div class="container mx-auto">
                 <div class="text-center mb-16 scroll-animate">
@@ -213,7 +252,9 @@
                     <p class="text-text-secondary">Visão técnica das minhas habilidades.</p>
                 </div>
 
+                <!-- O grid faz com que se criem 4 colunas em telas grandes (lg:grid-cols-4), e 1 no celular (grid-cols-1) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- CARD 1 -->
                     <div class="bg-card p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 scroll-animate hover:shadow-lg transition duration-300 hover-sound">
                         <h3 class="text-xl font-bold text-blue-600 mb-6 border-b pb-2 border-gray-100 dark:border-gray-700">Linguagens</h3>
                         <ul class="space-y-3 text-text-secondary text-sm font-medium">
@@ -223,6 +264,7 @@
                             <li class="flex items-center gap-2"><div class="w-2 h-2 bg-blue-500 rounded-full"></div> HTML5 & CSS3</li>
                         </ul>
                     </div>
+                    <!-- CARD 2 -->
                     <div class="bg-card p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 scroll-animate delay-100 hover:shadow-lg transition duration-300 hover-sound">
                         <h3 class="text-xl font-bold text-purple-600 mb-6 border-b pb-2 border-gray-100 dark:border-gray-700">Bibliotecas</h3>
                         <ul class="space-y-3 text-text-secondary text-sm font-medium">
@@ -232,6 +274,7 @@
                             <li class="flex items-center gap-2"><div class="w-2 h-2 bg-purple-500 rounded-full"></div> TailwindCSS</li>
                         </ul>
                     </div>
+                    <!-- CARD 3 -->
                     <div class="bg-card p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 scroll-animate delay-200 hover:shadow-lg transition duration-300 hover-sound">
                         <h3 class="text-xl font-bold text-green-600 mb-6 border-b pb-2 border-gray-100 dark:border-gray-700">Ferramentas</h3>
                         <ul class="space-y-3 text-text-secondary text-sm font-medium">
@@ -241,6 +284,7 @@
                             <li class="flex items-center gap-2"><div class="w-2 h-2 bg-green-500 rounded-full"></div> PyInstaller</li>
                         </ul>
                     </div>
+                    <!-- CARD 4 -->
                     <div class="bg-card p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 scroll-animate delay-300 hover:shadow-lg transition duration-300 hover-sound">
                         <h3 class="text-xl font-bold text-orange-500 mb-6 border-b pb-2 border-gray-100 dark:border-gray-700">Design & Mídia</h3>
                         <ul class="space-y-3 text-text-secondary text-sm font-medium">
@@ -254,6 +298,7 @@
             </div>
         </section>
 
+        <!-- SEÇÃO DE CONTATO E REDES SOCIAIS -->
         <section id="contato" class="py-24 px-6">
             <div class="container mx-auto text-center max-w-2xl scroll-animate">
                 <h2 class="text-4xl font-bold text-text-heading mb-6">Vamos Conversar?</h2>
@@ -261,20 +306,25 @@
                     Estou disponível para novos projetos e oportunidades profissionais.
                 </p>
                 
+                <!-- Contêiner dos botões circulares -->
                 <div class="flex justify-center gap-8 md:gap-12">
                     
+                    <!-- E-mail: O 'mailto:xyz@email' tenta abrir automaticamente o aplicativo de e-mail do usuário -->
                     <a href="mailto:fcs.ti01@gmail.com" class="w-20 h-20 bg-card rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 group border border-gray-200 dark:border-gray-700 hover-sound relative" title="Enviar E-mail">
                         <i class="fa fa-envelope text-4xl text-text-secondary group-hover:text-blue-600 transition"></i>
                     </a>
 
+                    <!-- LinkedIn -->
                     <a href="https://www.linkedin.com/in/fabiano-santos-96a72a37a/" target="_blank" class="w-20 h-20 bg-card rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 group border border-gray-200 dark:border-gray-700 hover-sound" title="LinkedIn">
                         <i class="fa fa-linkedin text-4xl text-text-secondary group-hover:text-[#0077b5] transition"></i>
                     </a>
 
+                    <!-- GitHub -->
                     <a href="https://github.com/Fabiano-Santos01" target="_blank" class="w-20 h-20 bg-card rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 group border border-gray-200 dark:border-gray-700 hover-sound" title="GitHub">
                         <i class="fa fa-github text-4xl text-text-secondary group-hover:text-black dark:group-hover:text-white transition"></i>
                     </a>
 
+                    <!-- Instagram -->
                     <a href="https://www.instagram.com/fabiano4fun/" target="_blank" class="w-20 h-20 bg-card rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 group border border-gray-200 dark:border-gray-700 hover-sound" title="Instagram">
                         <i class="fa fa-instagram text-4xl text-text-secondary group-hover:text-[#E1306C] transition"></i>
                     </a>
@@ -285,15 +335,20 @@
 
     </main>
 
+    <!-- RODAPÉ DA PÁGINA (FOOTER) -->
     <footer class="bg-slate-900 text-slate-400 py-10 text-center relative z-10 border-t border-slate-800">
         <div class="container mx-auto">
+            <!-- Atualize aqui o ano sempre que necessário -->
             <p>&copy; 2025 Fabiano da Costa Santos. Todos os direitos reservados.</p>
         </div>
     </footer>
 
+    <!-- BOTÃO FLUTUANTE DE WHATSAPP (com opções sub-menu) -->
     <div class="whatsapp-container fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 group">
         
+        <!-- Lista de Botões do Whatsapp: Ficam invisíveis e só sobem se você passar o mouse no ícone pai. -->
         <div class="whatsapp-menu flex flex-col gap-3">
+            <!-- Link Comercial: Edite o número logo depois de 'wa.me/' se precisar -->
             <a href="https://wa.me/5511919477235" target="_blank" class="flex items-center gap-3 bg-white dark:bg-slate-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition hover-sound">
                 <span class="font-bold text-sm">Comercial</span>
                 <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center">
@@ -301,6 +356,7 @@
                 </div>
             </a>
             
+            <!-- Link Particular: Edite o número logo depois de 'wa.me/' se precisar -->
             <a href="https://wa.me/5511972307705" target="_blank" class="flex items-center gap-3 bg-white dark:bg-slate-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-full shadow-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition hover-sound">
                 <span class="font-bold text-sm">Particular</span>
                 <div class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center">
@@ -309,25 +365,31 @@
             </a>
         </div>
 
+        <!-- Botão Principal do Whatsapp (Verde e com animação de pulso) -->
         <button class="bg-[#25D366] hover:bg-[#20b857] text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-4xl hover:scale-110 transition duration-300 animate-bounce-slow border-4 border-card hover-sound">
             <i class="fa fa-whatsapp"></i>
         </button>
     </div>
 
+    <!-- Importa as lógicas e animações de JavaScript presentes na raiz da pasta -->
     <script src="script.js"></script>
 
+    <!-- Script Interno: Adiciona um efeito sonoro de 'Pop' quando o mouse passa sobre os botões -->
     <script>
+        // Só carrega a função de áudio após toda a página carregar
         document.addEventListener('DOMContentLoaded', () => {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             
             if (AudioContext) {
                 const audioCtx = new AudioContext();
                 
+                // Função que sintetiza som nativamente no navegador (não depende de um arquivo .mp3 ou .wav pesado)
                 function playSoftPop() {
                     if (audioCtx.state === 'suspended') { audioCtx.resume(); }
                     const oscillator = audioCtx.createOscillator();
                     const gainNode = audioCtx.createGain();
 
+                    // Configura a frequência do som e como ela diminui rápido (fade-out)
                     oscillator.type = 'sine';
                     oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
                     oscillator.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1);
@@ -341,6 +403,7 @@
                     oscillator.stop(audioCtx.currentTime + 0.1);
                 }
 
+                // Seleciona todos os elementos clicáveis que possuam a classe 'hover-sound' ou sejam links (<a> e <button>)
                 const interactiveElements = document.querySelectorAll('.hover-sound, a, button');
                 interactiveElements.forEach(el => {
                     el.addEventListener('mouseenter', () => { playSoftPop(); });
